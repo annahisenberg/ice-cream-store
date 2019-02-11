@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <IceCreamStore v-on:add-chocolate-scoop="addChocolateScoop" />
-    <ShoppingCart />
+    <IceCreamStore v-on:add-scoop="addScoop" v-on:add-topping="addTopping" />
+    <ShoppingCart v-if="atLeastOneScoop" v-bind:chocolate="chocolate" v-bind:vanilla="vanilla" v-bind:mint="mint" v-bind:sprinkles="sprinkles" v-bind:chips="chips" v-on:remove-scoop="removeScoop" v-on:remove-topping="removeTopping" v-on:pay-now="reset" />
   </div>
 </template>
 
@@ -18,13 +18,59 @@ export default {
   },
   data() {
     return {
-      chocolate: 0
+      chocolate: 0,
+      vanilla: 0,
+      mint: 0,
+      sprinkles: 0,
+      chips: 0
     }
   },
   methods: {
-    addChocolateScoop() {
-      this.chocolate = this.chocolate + 1;
-      console.log(this.chocolate);
+    addScoop(flavor) {
+      if (flavor === 'chocolate') {
+        this.chocolate += 1;
+      } else if (flavor === 'vanilla') {
+        this.vanilla += 1;
+      } else if (flavor === 'mint') {
+        this.mint += 1;
+      }
+    },
+    addTopping(topping) {
+      if (topping === 'sprinkles') {
+        this.sprinkles += 0.25;
+      } else if (topping === 'chips') {
+        this.chips += 0.25;
+      }
+    },
+    removeScoop(flavor) {
+      if (flavor === 'chocolate') {
+        this.chocolate -= 1;
+      } else if (flavor === 'vanilla') {
+        this.vanilla -= 1;
+      } else if (flavor === 'mint') {
+        this.mint -= 1;
+      }
+    },
+    removeTopping(topping) {
+      if (topping === 'sprinkles') {
+        this.sprinkles -= 0.25;
+      } else if (topping === 'chips') {
+        this.chips -= 0.25;
+      }
+    },
+    reset() {
+      this.chocolate = 0;
+      this.vanilla = 0;
+      this.mint = 0;
+      this.sprinkles = 0;
+      this.chips = 0;
+    }
+  },
+  computed: {
+    atLeastOneScoop: function() {
+      if (this.chocolate > 0 || this.vanilla > 0 || this.mint > 0) {
+        return true;
+      }
     }
   }
 }

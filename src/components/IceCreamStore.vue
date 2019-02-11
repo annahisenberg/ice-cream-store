@@ -3,15 +3,15 @@
     <h1>Ice Cream Store</h1>
     <p>Flavors:</p>
     <ul>
-      <li>Chocolate - $1 per scoop <button @click="addChocolateScoop">Add one scoop to cart</button></li>
-      <li>Vanilla - $1 per scoop <button>Add one scoop to cart</button></li>
-      <li>Mint Chocolate Chip - $1 per scoop <button>Add one scoop to cart</button></li>
+      <li>Chocolate - $1 per scoop <button @click="addScoop('chocolate')">Add one scoop to cart</button></li>
+      <li>Vanilla - $1 per scoop <button @click="addScoop('vanilla')">Add one scoop to cart</button></li>
+      <li>Mint Chocolate Chip - $1 per scoop <button @click="addScoop('mint')">Add one scoop to cart</button></li>
     </ul>
 
     <p>Toppings:</p>
     <ul>
-      <li>Sprinkles - $0.25 <button>Add to cart</button></li>
-      <li>Chocolate Chips - $0.25 <button>Add to cart</button></li>
+      <li>Sprinkles - $0.25 <button @click="addTopping('sprinkles')">Add to cart</button></li>
+      <li>Chocolate Chips - $0.25 <button @click="addTopping('chips')">Add to cart</button></li>
     </ul>
   </div>
 </template>
@@ -21,8 +21,11 @@
 export default {
   name: 'IceCreamStore',
   methods: {
-    addChocolateScoop() {
-      this.$emit('add-chocolate-scoop');
+    addScoop(flavor) {
+      this.$emit('add-scoop', flavor);  
+    },
+    addTopping(topping) {
+      this.$emit('add-topping', topping)
     }
   }
 }
