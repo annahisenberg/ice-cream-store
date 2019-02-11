@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <IceCreamStore v-on:add-scoop="addScoop" v-on:add-topping="addTopping" />
-    <ShoppingCart v-if="atLeastOneScoop" v-bind:chocolate="chocolate" v-bind:vanilla="vanilla" v-bind:mint="mint" v-bind:sprinkles="sprinkles" v-bind:chips="chips" v-on:remove-scoop="removeScoop" v-on:remove-topping="removeTopping" v-on:pay-now="reset" />
+    <ShoppingCart v-if="atLeastOneScoop" :chocolate="chocolate" :vanilla="vanilla" :mint="mint" :sprinkles="sprinkles" :chips="chips" v-on:remove-scoop="removeScoop" v-on:remove-topping="removeTopping" v-on:pay-now="reset" />
   </div>
 </template>
 
