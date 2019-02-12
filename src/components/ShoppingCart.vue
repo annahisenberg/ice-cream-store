@@ -14,6 +14,7 @@
         </ul>
         <h3>Total price: ${{chocolate + vanilla + mint + sprinkles + chips}}</h3>
         <input @click="payNow" type="submit" value="Pay Now">
+        <button @click="anotherOrder">Add another order to cart</button>
     </div>
 </template>
 
@@ -32,6 +33,9 @@ export default {
         payNow() {
             alert('Thank you for your order!');
             this.$emit('pay-now');
+        },
+        anotherOrder() {
+            this.$emit('another-order');
         }
     }
 }
